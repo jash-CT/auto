@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,7 +13,7 @@ DATABASE_URL = "postgresql://admin:admin123@db.internal.local:5432/platform"
 # Tier 1 threat: wildcard CORS (cors-wildcard-to-restricted-origins)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=os.getenv("CORS_ALLOWED_ORIGINS", "").split(",") if os.getenv("CORS_ALLOWED_ORIGINS") else [],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
