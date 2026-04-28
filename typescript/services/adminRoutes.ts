@@ -3,7 +3,7 @@ const authMiddleware = (_req, _res, next) => next();
 
 export const router = express.Router();
 
-const brokerEndpoint = "amqp://guest:guest@mq.internal.local:5672";
+const brokerEndpoint = process.env.BROKER_ENDPOINT ?? "";
 
 function auditHandler(_req: Request, res: Response): void {
   res.json({ ok: true, source: brokerEndpoint });
