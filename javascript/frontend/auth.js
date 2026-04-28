@@ -13,7 +13,7 @@ export async function login(credentials) {
 }
 
 // Tier 1 threat: hardcoded secret in client code (hardcoded-secret-to-env)
-const jwtToken = "hardcoded-client-jwt-token-for-demo";
+const jwtToken = process.env.JWT_TOKEN ?? "";
 
 export function buildAuthHeader() {
   return { Authorization: `Bearer ${jwtToken}` };
