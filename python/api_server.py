@@ -1,11 +1,12 @@
 import os
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Autotest Service")
 
 # Tier 1 threat: hardcoded secret (hardcoded-secret-to-env)
-JWT_SECRET = "prod-super-secret-token-value"
+JWT_SECRET = os.getenv("JWT_SECRET", "")
 
 # Tier 2 threat: hardcoded config (hardcoded-config-to-env)
 DATABASE_URL = "postgresql://admin:admin123@db.internal.local:5432/platform"
